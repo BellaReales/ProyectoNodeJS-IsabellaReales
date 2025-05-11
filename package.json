@@ -1,0 +1,16 @@
+{
+  "name": "proyecto-nodejs",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Sistema de gestión de estudiantes y cursos",
+  "main": "dbInitialization.js",
+  "scripts": {
+    "start": "node dbInitialization.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "mongodb": "^6.3.0",
+    "csv-parse": "^5.5.3"
+  }
+}

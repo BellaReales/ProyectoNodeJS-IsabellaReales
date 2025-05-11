@@ -1,0 +1,6 @@
+id,nombre,profesorId,descripcion,duracion,nivel,fechaInicio,fechaFin,intensidad,contenidoTematico
+C001,Álgebra Lineal,P001,Fundamentos de álgebra lineal,6 meses,Intermedio,2024-01-15,2024-07-15,48,"['Vectores y matrices', 'Sistemas de ecuaciones lineales', 'Espacios vectoriales', 'Transformaciones lineales']"
+C002,Física Mecánica,P002,Mecánica clásica y sus aplicaciones,6 meses,Avanzado,2024-01-15,2024-07-15,48,"['Cinemática', 'Dinámica', 'Leyes de Newton', 'Energía y trabajo']"
+C003,Química Orgánica,P003,Principios de química orgánica,6 meses,Intermedio,2024-01-15,2024-07-15,48,"['Estructura molecular', 'Reacciones orgánicas', 'Síntesis de compuestos', 'Análisis instrumental']"
+C004,Historia Moderna,P004,Historia mundial del siglo XX,4 meses,Básico,2024-01-15,2024-05-15,32,"['Primera Guerra Mundial', 'Período de entreguerras', 'Segunda Guerra Mundial', 'Guerra Fría']"
+C005,Literatura Española,P005,Grandes obras de la literatura española,4 meses,Intermedio,2024-01-15,2024-05-15,32,"['Edad Media', 'Siglo de Oro', 'Romanticismo', 'Generación del 98']" 

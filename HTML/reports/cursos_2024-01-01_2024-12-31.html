@@ -1,0 +1,362 @@
+
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Cursos por Fecha</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1, h2, h3 { color: #2c3e50; }
+                .periodo-info { margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; }
+                .curso-card { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+                .curso-header { margin-bottom: 10px; }
+                .curso-details { margin-left: 20px; }
+                .label { font-weight: bold; color: #34495e; }
+                table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f5f6fa; }
+                tr:nth-child(even) { background-color: #f9f9f9; }
+                .stats { display: flex; gap: 20px; margin-top: 10px; }
+                .stat-item { padding: 10px; background-color: #e8f4f8; border-radius: 5px; }
+                .profesor-info { margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 5px; }
+                .resumen { margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px; }
+                .nivel-section { margin: 20px 0; }
+                .nivel-header { background-color: #34495e; color: white; padding: 10px; border-radius: 5px; }
+            </style>
+        </head>
+        <body>
+            <h1>Cursos por Fecha</h1>
+            
+            <div class="periodo-info">
+                <h2>Período del Reporte</h2>
+                <div><span class="label">Fecha Inicio:</span> 2024-01-01</div>
+                <div><span class="label">Fecha Fin:</span> 2024-12-31</div>
+                <div><span class="label">Total Cursos:</span> 5</div>
+                <div><span class="label">Total Estudiantes:</span> 0</div>
+            </div>
+
+            <div class="resumen">
+                <h2>Resumen por Nivel</h2>
+                
+                    <div class="nivel-section">
+                        <div class="nivel-header">
+                            <h3>Intermedio</h3>
+                            <div>Cursos: 3</div>
+                            <div>Estudiantes: 0</div>
+                        </div>
+                    </div>
+                
+                    <div class="nivel-section">
+                        <div class="nivel-header">
+                            <h3>Avanzado</h3>
+                            <div>Cursos: 1</div>
+                            <div>Estudiantes: 0</div>
+                        </div>
+                    </div>
+                
+                    <div class="nivel-section">
+                        <div class="nivel-header">
+                            <h3>Básico</h3>
+                            <div>Cursos: 1</div>
+                            <div>Estudiantes: 0</div>
+                        </div>
+                    </div>
+                
+            </div>
+
+            <h2>Cursos Programados</h2>
+            
+            
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <h3>Álgebra Lineal</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="label">Nivel:</span> Intermedio
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Estudiantes:</span> 0
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Intensidad:</span> undefined horas
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="curso-details">
+                        <div><span class="label">Período:</span> 2024-01-15 al 2024-07-15</div>
+                        
+                        <div class="profesor-info">
+                            <h4>Profesor</h4>
+                            <div><span class="label">Nombre:</span> Juan Pérez undefined</div>
+                            <div><span class="label">Especialidad:</span> Matemáticas</div>
+                        </div>
+                        
+                        
+                            <h4>Horarios</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>Aula</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                        <tr>
+                                            <td>Lunes</td>
+                                            <td>08:00</td>
+                                            <td>10:00</td>
+                                            <td>A101</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>Lunes</td>
+                                            <td>08:00</td>
+                                            <td>10:00</td>
+                                            <td>A102</td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </table>
+                        
+                    </div>
+                </div>
+            
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <h3>Física Mecánica</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="label">Nivel:</span> Avanzado
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Estudiantes:</span> 0
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Intensidad:</span> undefined horas
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="curso-details">
+                        <div><span class="label">Período:</span> 2024-01-15 al 2024-07-15</div>
+                        
+                        <div class="profesor-info">
+                            <h4>Profesor</h4>
+                            <div><span class="label">Nombre:</span> María García undefined</div>
+                            <div><span class="label">Especialidad:</span> Física</div>
+                        </div>
+                        
+                        
+                            <h4>Horarios</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>Aula</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                        <tr>
+                                            <td>Martes</td>
+                                            <td>10:00</td>
+                                            <td>12:00</td>
+                                            <td>B202</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>Martes</td>
+                                            <td>10:00</td>
+                                            <td>12:00</td>
+                                            <td>B203</td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </table>
+                        
+                    </div>
+                </div>
+            
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <h3>Química Orgánica</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="label">Nivel:</span> Intermedio
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Estudiantes:</span> 0
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Intensidad:</span> undefined horas
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="curso-details">
+                        <div><span class="label">Período:</span> 2024-01-15 al 2024-07-15</div>
+                        
+                        <div class="profesor-info">
+                            <h4>Profesor</h4>
+                            <div><span class="label">Nombre:</span> Carlos López undefined</div>
+                            <div><span class="label">Especialidad:</span> Química</div>
+                        </div>
+                        
+                        
+                            <h4>Horarios</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>Aula</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                        <tr>
+                                            <td>Miércoles</td>
+                                            <td>12:00</td>
+                                            <td>14:00</td>
+                                            <td>C303</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>Miércoles</td>
+                                            <td>12:00</td>
+                                            <td>14:00</td>
+                                            <td>C304</td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </table>
+                        
+                    </div>
+                </div>
+            
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <h3>Historia Moderna</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="label">Nivel:</span> Básico
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Estudiantes:</span> 0
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Intensidad:</span> undefined horas
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="curso-details">
+                        <div><span class="label">Período:</span> 2024-01-15 al 2024-05-15</div>
+                        
+                        <div class="profesor-info">
+                            <h4>Profesor</h4>
+                            <div><span class="label">Nombre:</span> Ana Martínez undefined</div>
+                            <div><span class="label">Especialidad:</span> Historia</div>
+                        </div>
+                        
+                        
+                            <h4>Horarios</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>Aula</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                        <tr>
+                                            <td>Jueves</td>
+                                            <td>14:00</td>
+                                            <td>16:00</td>
+                                            <td>D404</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>Jueves</td>
+                                            <td>14:00</td>
+                                            <td>16:00</td>
+                                            <td>D405</td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </table>
+                        
+                    </div>
+                </div>
+            
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <h3>Literatura Española</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="label">Nivel:</span> Intermedio
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Estudiantes:</span> 0
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Intensidad:</span> undefined horas
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="curso-details">
+                        <div><span class="label">Período:</span> 2024-01-15 al 2024-05-15</div>
+                        
+                        <div class="profesor-info">
+                            <h4>Profesor</h4>
+                            <div><span class="label">Nombre:</span> Pedro Sánchez undefined</div>
+                            <div><span class="label">Especialidad:</span> Literatura</div>
+                        </div>
+                        
+                        
+                            <h4>Horarios</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+                                        <th>Aula</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                        <tr>
+                                            <td>Viernes</td>
+                                            <td>16:00</td>
+                                            <td>18:00</td>
+                                            <td>E505</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>Viernes</td>
+                                            <td>16:00</td>
+                                            <td>18:00</td>
+                                            <td>E506</td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </table>
+                        
+                    </div>
+                </div>
+            
+        </body>
+        </html>
+        
