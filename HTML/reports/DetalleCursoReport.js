@@ -37,11 +37,13 @@ class DetalleCursoReport {
             <title>Detalle de Curso</title>
             <style>
                 body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; background: #fff; color: #222; }
-                h1, h2 { color: #003366; }
-                .section { margin-bottom: 30px; padding: 20px; background-color: #f4f6fa; border-radius: 8px; border-left: 6px solid #B22234; }
-                .info-item { margin: 10px 0; }
+                h1, h2, h3 { color: #003366; }
+                .periodo-info, .resumen { margin-bottom: 30px; padding: 20px; background-color: #f4f6fa; border-radius: 8px; border-left: 6px solid #B22234; }
+                .curso-card { margin-bottom: 24px; padding: 18px; border: 1px solid #00336622; border-radius: 8px; background: #f9fafc; box-shadow: 0 2px 8px #00336611; }
+                .curso-header { margin-bottom: 10px; }
+                .curso-details { margin-left: 20px; }
                 .label { font-weight: bold; color: #B22234; }
-                table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; }
+                table { width: 100%; border-collapse: collapse; margin-top: 10px; background: #fff; }
                 th, td { border: 1px solid #00336644; padding: 10px; text-align: left; }
                 th { background-color: #003366; color: #fff; }
                 tr:nth-child(even) { background-color: #f4f6fa; }
@@ -50,60 +52,55 @@ class DetalleCursoReport {
         </head>
         <body>
             <h1>Detalle del Curso: ${curso.nombre}</h1>
-            
-            <div class="section">
+            <div class="periodo-info">
                 <h2>Información General</h2>
-                <div class="info-item">
-                    <span class="label">ID:</span> ${curso.id}
+                <div><span class="label">ID:</span> ${curso.id}</div>
+                <div><span class="label">Nivel:</span> ${curso.nivel}</div>
+                <div><span class="label">Intensidad Horaria:</span> ${curso.intensidadHoraria} horas</div>
+                <div><span class="label">Profesor:</span> ${profesor ? `${profesor.nombre} ${profesor.apellido}` : 'No asignado'}</div>
+                <div><span class="label">Período:</span> ${curso.fechaInicio} al ${curso.fechaFin}</div>
+            </div>
+            <div class="curso-card">
+                <div class="curso-header">
+                    <h3>Contenido Temático</h3>
                 </div>
-                <div class="info-item">
-                    <span class="label">Nivel:</span> ${curso.nivel}
-                </div>
-                <div class="info-item">
-                    <span class="label">Intensidad Horaria:</span> ${curso.intensidadHoraria} horas
-                </div>
-                <div class="info-item">
-                    <span class="label">Profesor:</span> ${profesor ? `${profesor.nombre} ${profesor.apellido}` : 'No asignado'}
-                </div>
-                <div class="info-item">
-                    <span class="label">Período:</span> ${curso.fechaInicio} al ${curso.fechaFin}
+                <div class="curso-details">
+                    ${curso.contenidoTematico ? curso.contenidoTematico.map((contenido, index) => `
+                        <div class="contenido-item">
+                            <div class="label">Unidad ${index + 1}:</div>
+                            <div>${contenido.titulo}</div>
+                            <div>${contenido.descripcion}</div>
+                            <div>Duración: ${contenido.duracion} horas</div>
+                        </div>
+                    `).join('') : '<p>No hay contenido temático disponible</p>'}
                 </div>
             </div>
-
-            <div class="section">
-                <h2>Contenido Temático</h2>
-                ${curso.contenidoTematico ? curso.contenidoTematico.map((contenido, index) => `
-                    <div class="contenido-item">
-                        <div class="label">Unidad ${index + 1}:</div>
-                        <div>${contenido.titulo}</div>
-                        <div>${contenido.descripcion}</div>
-                        <div>Duración: ${contenido.duracion} horas</div>
-                    </div>
-                `).join('') : '<p>No hay contenido temático disponible</p>'}
-            </div>
-
-            <div class="section">
-                <h2>Horarios</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Día</th>
-                            <th>Hora Inicio</th>
-                            <th>Hora Fin</th>
-                            <th>Aula</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${horarios.map(horario => `
+            <div class="curso-card">
+                <div class="curso-header">
+                    <h3>Horarios</h3>
+                </div>
+                <div class="curso-details">
+                    <table>
+                        <thead>
                             <tr>
-                                <td>${horario.dia}</td>
-                                <td>${horario.horaInicio}</td>
-                                <td>${horario.horaFin}</td>
-                                <td>${horario.aula}</td>
+                                <th>Día</th>
+                                <th>Hora Inicio</th>
+                                <th>Hora Fin</th>
+                                <th>Aula</th>
                             </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            ${horarios.map(horario => `
+                                <tr>
+                                    <td>${horario.dia}</td>
+                                    <td>${horario.horaInicio}</td>
+                                    <td>${horario.horaFin}</td>
+                                    <td>${horario.aula}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </body>
         </html>

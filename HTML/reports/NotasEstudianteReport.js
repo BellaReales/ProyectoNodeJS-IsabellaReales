@@ -71,7 +71,6 @@ class NotasEstudianteReport {
 
     generarHTML(estudiante, cursosConNotas, promedioGeneral) {
         const estadoGeneral = this.determinarEstado(promedioGeneral);
-        
         return `
         <!DOCTYPE html>
         <html lang="es">
@@ -80,8 +79,8 @@ class NotasEstudianteReport {
             <title>Notas del Estudiante</title>
             <style>
                 body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; background: #fff; color: #222; }
-                h1, h2 { color: #003366; }
-                .estudiante-info, .resumen { margin-bottom: 30px; padding: 20px; background-color: #f4f6fa; border-radius: 8px; border-left: 6px solid #B22234; }
+                h1, h2, h3 { color: #003366; }
+                .periodo-info, .resumen { margin-bottom: 30px; padding: 20px; background-color: #f4f6fa; border-radius: 8px; border-left: 6px solid #B22234; }
                 .curso-card { margin-bottom: 24px; padding: 18px; border: 1px solid #00336622; border-radius: 8px; background: #f9fafc; box-shadow: 0 2px 8px #00336611; }
                 .curso-header { margin-bottom: 10px; }
                 .curso-details { margin-left: 20px; }
@@ -102,33 +101,35 @@ class NotasEstudianteReport {
         </head>
         <body>
             <h1>Notas del Estudiante</h1>
-            
-            <div class="estudiante-info">
+            <div class="periodo-info">
                 <h2>Información del Estudiante</h2>
-                <div><span class="label">Nombre:</span> ${estudiante.nombre} ${estudiante.apellido}</div>
+                <div><span class="label">Nombre:</span> ${estudiante.nombre}</div>
                 <div><span class="label">Identificación:</span> ${estudiante.numeroIdentificacion}</div>
                 <div><span class="label">Email:</span> ${estudiante.email}</div>
             </div>
-
             <div class="resumen">
                 <h2>Resumen Académico</h2>
                 <div><span class="label">Promedio General:</span> ${promedioGeneral.toFixed(2)}</div>
                 <div><span class="label">Estado:</span> <span class="estado ${estadoGeneral.clase}">${estadoGeneral.texto}</span></div>
                 <div><span class="label">Total Cursos:</span> ${cursosConNotas.length}</div>
             </div>
-
             <h2>Notas por Curso</h2>
-            
             ${cursosConNotas.map(curso => `
                 <div class="curso-card">
                     <div class="curso-header">
                         <h3>${curso.nombre}</h3>
-                        <div><span class="label">Nivel:</span> ${curso.nivel}</div>
-                        <div><span class="label">Estado:</span> <span class="estado ${curso.estado.clase}">${curso.estado.texto}</span></div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="label">Nivel:</span> ${curso.nivel}
+                            </div>
+                            <div class="stat-item">
+                                <span class="label">Estado:</span> <span class="estado ${curso.estado.clase}">${curso.estado.texto}</span>
+                            </div>
+                        </div>
                     </div>
-                    
                     <div class="curso-details">
-                        ${curso.notas.length > 0 ? `
+                        ${curso.notas && curso.notas.length > 0 ? `
+                            <h4>Notas</h4>
                             <table>
                                 <thead>
                                     <tr>

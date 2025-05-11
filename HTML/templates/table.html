@@ -1,121 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>{{titulo}}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .header {
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
-        }
-        .header h1 {
-            color: #333;
-            margin: 0;
-        }
-        .header p {
-            color: #666;
-            margin: 5px 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f8f9fa;
-            color: #333;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        .footer {
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 2px solid #eee;
-            font-size: 0.9em;
-            color: #666;
-        }
-        .status {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .status-active {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .status-pending {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-        .status-completed {
-            background-color: #cce5ff;
-            color: #004085;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2, h3 { color: #2c3e50; }
+        .periodo-info { margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; }
+        .curso-card { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .curso-header { margin-bottom: 10px; }
+        .curso-details { margin-left: 20px; }
+        .label { font-weight: bold; color: #34495e; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f5f6fa; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .stats { display: flex; gap: 20px; margin-top: 10px; }
+        .stat-item { padding: 10px; background-color: #e8f4f8; border-radius: 5px; }
+        .profesor-info { margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 5px; }
+        .resumen { margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px; }
+        .nivel-section { margin: 20px 0; }
+        .nivel-header { background-color: #34495e; color: white; padding: 10px; border-radius: 5px; }
+        .footer { margin-top: 20px; padding-top: 10px; border-top: 2px solid #eee; font-size: 0.9em; color: #666; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>{{titulo}}</h1>
-            {{#if fechaInicio}}
-            <p>Período: {{fechaInicio}} - {{fechaFin}}</p>
-            {{/if}}
-            {{#if curso}}
-            <p>Curso: {{curso.nombre}}</p>
-            {{/if}}
+    <h1>{{titulo}}</h1>
+    {{#if fechaInicio}}
+    <div class="periodo-info">
+        <h2>Período del Reporte</h2>
+        <div><span class="label">Fecha Inicio:</span> {{fechaInicio}}</div>
+        <div><span class="label">Fecha Fin:</span> {{fechaFin}}</div>
+    </div>
+    {{/if}}
+    {{#if curso}}
+    <div class="curso-card">
+        <div class="curso-header">
+            <h3>{{curso.nombre}}</h3>
+        </div>
+        <div class="curso-details">
             {{#if profesor}}
-            <p>Profesor: {{profesor.nombre}}</p>
+            <div class="profesor-info">
+                <h4>Profesor</h4>
+                <div><span class="label">Nombre:</span> {{profesor.nombre}}</div>
+            </div>
             {{/if}}
         </div>
-
-        <table>
-            <thead>
-                <tr>
-                    {{#each headers}}
-                    <th>{{this}}</th>
-                    {{/each}}
-                </tr>
-            </thead>
-            <tbody>
-                {{#each rows}}
-                <tr>
-                    {{#each this}}
-                    <td>{{this}}</td>
-                    {{/each}}
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-
-        <div class="footer">
-            <p>Generado el {{fecha}}</p>
+    </div>
+    {{/if}}
+    <div class="curso-card">
+        <div class="curso-header">
+            <h3>Datos del Reporte</h3>
         </div>
+        <div class="curso-details">
+            <table>
+                <thead>
+                    <tr>
+                        {{#each headers}}
+                        <th>{{this}}</th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        {{#each this}}
+                        <td>{{this}}</td>
+                        {{/each}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Generado el {{fecha}}</p>
     </div>
 </body>
 </html> 

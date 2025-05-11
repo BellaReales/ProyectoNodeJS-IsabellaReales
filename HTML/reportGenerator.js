@@ -131,11 +131,17 @@ export default class ReportGenerator {
     }
 
     async generateTableReport(data, filename) {
-        const template = await this.getTemplate('table');
-        const html = this.fillTemplate(template, data);
-        const reportPath = path.join(this.reportsDir, `${filename}.html`);
-        await fs.writeFile(reportPath, html);
-        return reportPath;
+        try {
+            const template = await this.getTemplate('table');
+            const html = this.fillTemplate(template, data);
+            const reportPath = path.join(this.reportsDir, `${filename}.html`);
+            await fs.writeFile(reportPath, html);
+            console.log(`Reporte generado exitosamente en: ${reportPath}`);
+            return reportPath;
+        } catch (error) {
+            console.error('Error al generar el reporte:', error);
+            throw error;
+        }
     }
 
     async getTemplate(templateName) {
@@ -300,26 +306,75 @@ export default class ReportGenerator {
         // Reemplazar variables simples
         Object.keys(data).forEach(key => {
             if (typeof data[key] !== 'object') {
-                html = html.replace(new RegExp(`{{${key}}}`, 'g'), data[key]);
+                html = html.replace(new RegExp(`{{${key}}}`, 'g'), data[key] || '');
             }
         });
 
         // Reemplazar fecha
         html = html.replace('{{fecha}}', new Date().toLocaleDateString());
 
-        // Reemplazar headers
-        if (data.headers) {
-            const headersHtml = data.headers.map(h => `<th>${h}</th>`).join('\n');
-            html = html.replace('{{#each headers}}', headersHtml);
+        // Procesar fechaInicio
+        if (data.fechaInicio && data.fechaFin) {
+            html = html.replace('{{#if fechaInicio}}', '');
+            html = html.replace('{{/if}}', '');
+            html = html.replace('{{fechaInicio}}', data.fechaInicio);
+            html = html.replace('{{fechaFin}}', data.fechaFin);
+        } else {
+            const start = html.indexOf('{{#if fechaInicio}}');
+            const end = html.indexOf('{{/if}}', start) + '{{/if}}'.length;
+            html = html.substring(0, start) + html.substring(end);
         }
 
-        // Reemplazar rows
-        if (data.rows) {
+        // Procesar curso
+        if (data.curso) {
+            html = html.replace('{{#if curso}}', '');
+            html = html.replace('{{/if}}', '');
+            html = html.replace('{{curso.nombre}}', data.curso.nombre || '');
+        } else {
+            const start = html.indexOf('{{#if curso}}');
+            const end = html.indexOf('{{/if}}', start) + '{{/if}}'.length;
+            html = html.substring(0, start) + html.substring(end);
+        }
+
+        // Procesar profesor
+        if (data.profesor) {
+            html = html.replace('{{#if profesor}}', '');
+            html = html.replace('{{/if}}', '');
+            html = html.replace('{{profesor.nombre}}', data.profesor.nombre || '');
+        } else {
+            const start = html.indexOf('{{#if profesor}}');
+            const end = html.indexOf('{{/if}}', start) + '{{/if}}'.length;
+            html = html.substring(0, start) + html.substring(end);
+        }
+
+        // Procesar headers
+        if (data.headers && data.headers.length > 0) {
+            const headersHtml = data.headers.map(h => `<th>${h}</th>`).join('');
+            const start = html.indexOf('{{#each headers}}');
+            const end = html.indexOf('{{/each}}', start) + '{{/each}}'.length;
+            html = html.substring(0, start) + headersHtml + html.substring(end);
+        }
+
+        // Procesar rows
+        if (data.rows && data.rows.length > 0) {
             const rowsHtml = data.rows.map(row => {
-                const cells = row.map(cell => `<td>${cell}</td>`).join('\n');
-                return `<tr>\n${cells}\n</tr>`;
-            }).join('\n');
-            html = html.replace('{{#each rows}}', rowsHtml);
+                const cells = row.map(cell => `<td>${cell}</td>`).join('');
+                return `<tr>${cells}</tr>`;
+            }).join('');
+            const start = html.indexOf('{{#each rows}}');
+            const end = html.indexOf('{{/each}}', start) + '{{/each}}'.length;
+            html = html.substring(0, start) + rowsHtml + html.substring(end);
+        }
+
+        // Limpiar cualquier variable no reemplazada
+        while (html.includes('{{')) {
+            const start = html.indexOf('{{');
+            const end = html.indexOf('}}', start) + 2;
+            if (end > start + 2) {
+                html = html.substring(0, start) + html.substring(end);
+            } else {
+                break;
+            }
         }
 
         return html;

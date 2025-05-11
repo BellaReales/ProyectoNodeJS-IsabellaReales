@@ -51,8 +51,8 @@ class CursosPorProfesorReport {
             <title>Cursos por Profesor</title>
             <style>
                 body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; background: #fff; color: #222; }
-                h1, h2 { color: #003366; }
-                .profesor-info { margin-bottom: 30px; padding: 20px; background-color: #f4f6fa; border-radius: 8px; border-left: 6px solid #B22234; }
+                h1, h2, h3 { color: #003366; }
+                .periodo-info, .resumen { margin-bottom: 30px; padding: 20px; background-color: #f4f6fa; border-radius: 8px; border-left: 6px solid #B22234; }
                 .curso-card { margin-bottom: 24px; padding: 18px; border: 1px solid #00336622; border-radius: 8px; background: #f9fafc; box-shadow: 0 2px 8px #00336611; }
                 .curso-header { margin-bottom: 10px; }
                 .curso-details { margin-left: 20px; }
@@ -67,16 +67,13 @@ class CursosPorProfesorReport {
         </head>
         <body>
             <h1>Cursos por Profesor</h1>
-            
-            <div class="profesor-info">
+            <div class="periodo-info">
                 <h2>Información del Profesor</h2>
                 <div><span class="label">Nombre:</span> ${profesor.nombre} ${profesor.apellido}</div>
                 <div><span class="label">Especialidad:</span> ${profesor.especialidad}</div>
                 <div><span class="label">Email:</span> ${profesor.email}</div>
             </div>
-
             <h2>Cursos Asignados (${cursos.length})</h2>
-            
             ${cursos.map(curso => `
                 <div class="curso-card">
                     <div class="curso-header">
@@ -93,10 +90,8 @@ class CursosPorProfesorReport {
                             </div>
                         </div>
                     </div>
-                    
                     <div class="curso-details">
                         <div><span class="label">Período:</span> ${curso.fechaInicio} al ${curso.fechaFin}</div>
-                        
                         <h4>Horarios</h4>
                         <table>
                             <thead>
