@@ -83,5 +83,10 @@ export async function closeDB() {
     return await DatabaseConnection.getInstance().close();
 }
 
+// Exportar la función getDB que los controllers necesitan
+export async function getDB() {
+    return await connectDB();
+}
+
 // Exportar la instancia del singleton para casos especiales
 export const dbConnection = DatabaseConnection.getInstance(); 
